@@ -11,12 +11,14 @@ apply plugin: "maven-publish"
 apply plugin: "checkstyle"
 
 android {
-    compileSdkVersion 34
+    compileSdkVersion 29
 
     defaultConfig {
-        minSdkVersion 23
+        minSdkVersion 24
         //noinspection ExpiredTargetSdkVersion
-        targetSdkVersion 26
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
     }
 
     compileOptions {
@@ -49,7 +51,7 @@ task copyDashAssets(type: Copy) {
 }
 
 copyDashAssets.dependsOn cleanDashAssets
-copyDashAssets.dependsOn yarn_build
+//copyDashAssets.dependsOn yarn_build
 
 android.libraryVariants.all { variant ->
     variant.preBuildProvider.get().dependsOn copyDashAssets
@@ -124,7 +126,7 @@ def addPomDependencies(root) {
         return n
     }
 
-    addDep("com.acmerobotics.dashboard", "core", dashboard_version)
+    //addDep("com.acmerobotics.dashboard", "core", dashboard_version)
 
     ["RobotCore", "Hardware", "RobotServer", "FtcCommon"].forEach {
         addDep("org.firstinspires.ftc", it, min_sdk_version)
@@ -166,14 +168,14 @@ project.afterEvaluate {
                 artifact androidSourcesJar
                 artifact androidJavadocsJar
 
-                groupId = "com.acmerobotics.dashboard"
+                groupId = "com.github.6165-MSET-CuttleFish"
                 artifactId = "dashboard"
                 version dashboard_version
 
                 pom {
                     description = "Web dashboard designed for FTC"
-                    name = "FTC Dashboard"
-                    url = "https://github.com/acmerobotics/ftc-dashboard"
+                    name = "Dashboard+"
+                    url = "https://github.com/6165-MSET-CuttleFish/dashboard-dashboard"
 
                     licenses {
                         license {
@@ -185,14 +187,14 @@ project.afterEvaluate {
 
                     developers {
                         developer {
-                            id = "rbrott"
-                            name = "Ryan Brott"
-                            email = "rcbrott@gmail.com"
+                            id = "6165-MSET-CuttleFish"
+                            name = "6165 MSET CuttleFish"
+                            email = "msetcuttlefish6165@gmail.com"
                         }
                     }
 
                     scm {
-                        url = "https://github.com/acmerobotics/ftc-dashboard"
+                        url = "https://github.com/6165-MSET-CuttleFish/dashboard-dashboard"
                     }
                 }
 
