@@ -27,6 +27,16 @@ allprojects {
     }
 }
 
-repositories {
-    mavenCentral()
+subprojects {
+    apply plugin: 'maven-publish'
+    group = 'com.github.6165-MSET-CuttleFish'
+
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
 }
